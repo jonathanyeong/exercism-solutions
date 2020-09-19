@@ -22,6 +22,7 @@ defmodule WordCount do
   end
 
   def count_words([h|t], counts) do
+    # Could use Map.update
     if counts[h] do
       count = counts[h] + 1
       count_words(t, %{counts | h => count })
