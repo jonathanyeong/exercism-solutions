@@ -1,15 +1,9 @@
 defmodule Bob do
   def hey(input) do
-    # Case
-    # String with letters ends with ? -> "Sure."
-    #   if all caps (only letters) -> "calm down"
-    # Anything that is all caps (only letters) -> "Whoa, chill out!"
-    # No characters -> "Fine. Be that way!"
-    # ANything else -> "Whatever."
     cond do
       is_question?(input) ->
         if is_shouting?(input), do: "Calm down, I know what I'm doing!", else: "Sure."
-      String.length(String.trim(input)) == 0 -> # ONly white space
+      only_whitespace?(input) ->
         "Fine. Be that way!"
       is_shouting?(input) ->
         "Whoa, chill out!"
@@ -26,5 +20,12 @@ defmodule Bob do
     input
     |> String.trim_trailing()
     |> String.ends_with?("?")
+  end
+
+  defp only_whitespace?(input) do
+    input
+    |> String.trim()
+    |> String.length()
+    == 0
   end
 end
